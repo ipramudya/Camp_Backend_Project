@@ -1,0 +1,48 @@
+<!-- asumsi kita berada di dalam directory views -->
+<% layout('layouts/boilerplates.ejs') %>
+    <div class="row">
+        <h1 class="text-center need">Edit Campgrounds</h1>
+        <div class="col-6 offset-3">
+            <form action="/campgrounds/<%=campgrounds['_id']%>?_method=PUT" method="POST" novalidate
+                class="custom-validation">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="campground[title]"
+                        value="<%=campgrounds.title%>" required>
+                    <%- include('../partials/validateMessage.ejs') %>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="campground[location]"
+                        value="<%= campgrounds.location%>" required>
+                    <%- include('../partials/validateMessage.ejs') %>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="campground[image]"
+                        value="<%= campgrounds.image%>" required>
+                    <%- include('../partials/validateMessage.ejs') %>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Campground Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="campground[price]" value="<%=campgrounds.price%>"
+                            required>
+                        <%- include('../partials/validateMessage.ejs') %>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" style="height: 120px"
+                        name="campground[description]" required><%=campgrounds.description%></textarea>
+                    <%- include('../partials/validateMessage.ejs') %>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Update</button>
+                </div>
+            </form>
+            <a class="btn btn-primary" href="/campgrounds/<%=campgrounds['_id']%>">Back</a>
+        </div>
+    </div>
